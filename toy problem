@@ -1,0 +1,44 @@
+// Insertion sort iterates over an array, growing a sorted array behind the current location. It takes each element from the input and finds the spot, up to the current point, where that element belongs (in constant space). It does this until it gets to the end of the array.
+
+// Insertion sort should be implemented as a stable sort. This means that equal elements
+// should retain their relative order. Numbers, as primitives, give us no way to check this,
+// so we’ll be sorting objects with a value field, on which they will be sorted, like so:
+
+// [{value: 10}, {value: 5, order: 1}, {value: 5, order: 2}]
+// A stable sort must return
+
+// [{value: 5, order: 1}, {value: 5, order: 2}, {value: 10}]
+// in that order.
+
+// DO NOT USE Array.sort() method
+
+// EXAMPLES:
+// [ { "value": 3 }, { "value": 1 }, { "value": 2 } ] =>>> [ { "value": 1 }, { "value": 2 }, { "value": 3 } ]
+// [ { "value": 10 }, { "value": 5, "order": 1 }, { "value": 5, "order": 2 } ] =>>> [ { "value": 5, "order": 1 }, { "value": 5, "order": 2 }, { "value": 10 } ]
+
+function insertionSort (array) {
+ for(var i = 0; i < array.length; i++){
+   var element = array[i];
+   array.forEach(function(element){
+     if(element.value - 1 >= 0 && element.value > element){
+       element.value = element.value + 1;
+     }
+   });
+   element = element.value + 1;
+  //  for(var key in obj){
+  //    var obj = array[i];
+  //    if(obj - 1 >= 0 && obj > element){
+  //      obj = obj + 1;
+  //    }
+  //  }
+  //  }
+  //  element = obj + 1;
+ }
+ return array;
+};
+
+
+const test1 = insertionSort([ { "value": 3 }, { "value": 1 }, { "value": 2 } ]);
+console.log(`Test1: expected [ { "value": 1 }, { "value": 2 }, { "value": 3 } ] and got ${JSON.stringify(test1)}`);
+const test2 = insertionSort([ { "value": 10 }, { "value": 5, "order": 1 }, { "value": 5, "order": 2 } ]);
+console.log(`Test2: expected [ { "value": 5, "order": 1 }, { "value": 5, "order": 2 }, { "value": 10 } ] and got ${JSON.stringify(test2)}`);
